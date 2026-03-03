@@ -438,10 +438,6 @@
             border-left: 1px solid rgba(255,255,255,0.1);
         }
 
-        .mobile-sidebar.active {
-            right: 0;
-        }
-
         .mobile-links {
             display: flex;
             flex-direction: column;
@@ -473,9 +469,18 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s;
+            cursor: pointer;
         }
 
-        .overlay.active {
+        #menu-toggle {
+            display: none;
+        }
+
+        #menu-toggle:checked ~ .mobile-sidebar {
+            right: 0;
+        }
+
+        #menu-toggle:checked ~ .overlay {
             opacity: 1;
             visibility: visible;
         }
@@ -523,6 +528,8 @@
     </style>
 </head>
 <body>
+    <input type="checkbox" id="menu-toggle">
+
     <header class="glass">
         <div class="nav-container">
             <a href="https://www.effectivegatecpm.com/uzcvgd81a?key=08ab7195f03ce3c067b0e05d199e4edc" class="logo"><i class="fas fa-mug-hot"></i> Aroma Bliss</a>
@@ -537,17 +544,17 @@
 
             <a href="#menu" class="btn btn-primary nav-btn-desktop">Order Now</a>
 
-            <div class="hamburger" id="hamburgerBtn">
+            <label for="menu-toggle" class="hamburger" id="hamburgerBtn">
                 <i class="fas fa-bars"></i>
-            </div>
+            </label>
         </div>
     </header>
 
-    <div class="overlay" id="overlay"></div>
+    <label for="menu-toggle" class="overlay" id="overlay"></label>
     <div class="mobile-sidebar" id="mobileSidebar">
-        <div class="close-btn" id="closeBtn">
+        <label for="menu-toggle" class="close-btn" id="closeBtn">
             <i class="fas fa-times"></i>
-        </div>
+        </label>
         <div class="mobile-links">
             <a href="#hero" class="mobile-link">Home</a>
             <a href="#features" class="mobile-link">Why Choose Us</a>
@@ -559,7 +566,7 @@
 
     <section id="hero">
         <div class="hero-content reveal">
-            <h1>Experience the Art of <br><span style="color: var(--accent-gold);">Premium Coffee</span></h1>
+            <h1>Experience<br>the Art of <span style="color: var(--accent-gold);">Premium Coffee</span></h1>
             <p>Handcrafted beverages made from the finest organic beans. A sanctuary for coffee lovers in the heart of the city.</p>
             <div class="hero-buttons">
                 <a href="#menu" class="btn btn-primary">View Menu</a>
@@ -719,28 +726,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
-            const hamburgerBtn = document.getElementById('hamburgerBtn');
-            const closeBtn = document.getElementById('closeBtn');
-            const mobileSidebar = document.getElementById('mobileSidebar');
-            const overlay = document.getElementById('overlay');
-            const mobileLinks = document.querySelectorAll('.mobile-link');
-
-            function toggleMenu() {
-                mobileSidebar.classList.toggle('active');
-                overlay.classList.toggle('active');
-
-                document.body.style.overflow = mobileSidebar.classList.contains('active') ? 'hidden' : 'auto';
-            }
-
-            hamburgerBtn.addEventListener('click', toggleMenu);
-            closeBtn.addEventListener('click', toggleMenu);
-            overlay.addEventListener('click', toggleMenu);
-
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', toggleMenu);
-            });
-
             const revealElements = document.querySelectorAll('.reveal');
 
             const revealCallback = (entries, observer) => {

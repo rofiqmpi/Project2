@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroma Bliss | Premium Coffee Experience</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #2C1A1D; 
+            --secondary-dark: #1A0F11; 
+            --accent-gold: #D4AF37;   
+            --accent-gold-hover: #B59025;
+            --text-off-white: #F5F5F5;
+            --text-muted: #C4B8B8;
+            --glass-bg: rgba(44, 26, 29, 0.75);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-off-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-off-white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-speed);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-gold);
+            color: var(--secondary-dark);
+            border: 2px solid var(--accent-gold);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--accent-gold);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-off-white);
+            border: 2px solid var(--text-off-white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-off-white);
+            color: var(--primary-dark);
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-gold);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-gold);
+            transition: width var(--transition-speed);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-off-white);
+        }
+
+        #hero {
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(44, 26, 29, 0.9)), url('https://images.unsplash.com/photo-1447933601403-0c60c6443287?q=80&w=1921&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px; /* Offset for fixed header */
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #ddd;
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .feature-item h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .feature-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        #menu {
+            background-color: var(--secondary-dark);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .menu-card {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .menu-img {
+            height: 200px;
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .menu-details h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .menu-details p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .add-cart-btn {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-cart-btn:hover {
+            background: var(--accent-gold);
+            color: var(--secondary-dark);
+        }
+
+        footer {
+            background-color: #110a0b;
+            padding: 60px 0 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: var(--text-off-white);
+        }
+
+        .social-icons a:hover {
+            background: var(--accent-gold);
+            color: var(--secondary-dark);
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+            padding-left: 5px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-form input {
+            padding: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: var(--text-off-white);
+            border-radius: 5px 0 0 5px;
+            flex-grow: 1;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            padding: 10px 15px;
+            background: var(--accent-gold);
+            border: none;
+            color: var(--secondary-dark);
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%; 
+            width: 280px;
+            height: 100vh;
+            background: var(--secondary-dark);
+            z-index: 2000;
+            padding: 80px 30px;
+            transition: right 0.4s ease-in-out;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+            border-left: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-sidebar.active {
+            right: 0;
+        }
+
+        .mobile-links {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .mobile-links a {
+            font-size: 1.2rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 1.5rem;
+            color: var(--text-off-white);
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-btn-desktop {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 20px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr; 
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-grid {
+                grid-template-columns: 1fr; 
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .glass-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="glass">
+        <div class="nav-container">
+            <a href="#" class="logo"><i class="fas fa-mug-hot"></i> Aroma Bliss</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#features">About</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#footer">Contact</a></li>
+                </ul>
+            </nav>
+
+            <a href="#menu" class="btn btn-primary nav-btn-desktop">Order Now</a>
+
+            <div class="hamburger" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="close-btn" id="closeBtn">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="mobile-links">
+            <a href="#hero" class="mobile-link">Home</a>
+            <a href="#features" class="mobile-link">Why Choose Us</a>
+            <a href="#menu" class="mobile-link">Menu</a>
+            <a href="#footer" class="mobile-link">Contact</a>
+            <a href="#menu" class="btn btn-primary" style="text-align: center; margin-top: 10px;">Order Now</a>
+        </div>
+    </div>
+
+    <section id="hero">
+        <div class="hero-content reveal">
+            <h1>Experience the Art of <br><span style="color: var(--accent-gold);">Premium Coffee</span></h1>
+            <p>Handcrafted beverages made from the finest organic beans. A sanctuary for coffee lovers in the heart of the city.</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">View Menu</a>
+                <a href="#features" class="btn btn-outline">Our Story</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section-padding">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Why Choose Us</h2>
+                <p>We believe in quality, sustainability, and the perfect brew every single time.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="glass-card feature-item reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Organic Beans</h3>
+                    <p>Sourced directly from sustainable farms, ensuring purity in every sip.</p>
+                </div>
+
+                <div class="glass-card feature-item reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Professional Baristas</h3>
+                    <p>Our award-winning team crafts every cup with precision and passion.</p>
+                </div>
+
+                <div class="glass-card feature-item reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Fast Delivery</h3>
+                    <p>Hot and fresh coffee delivered to your doorstep in under 30 minutes.</p>
+                </div>
+
+                <div class="glass-card feature-item reveal">
+                    <div class="feature-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3>Cozy Ambience</h3>
+                    <p>A relaxing atmosphere designed for work, chat, or peaceful solitude.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="section-padding">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Our Signature Menu</h2>
+                <p>Explore our most popular blends and freshly brewed specialties.</p>
+            </div>
+
+            <div class="menu-grid">
+                <div class="glass-card menu-card reveal">
+                    <img src="images/photo-01.jpeg" alt="Classic Latte" class="menu-img">
+                    <div class="menu-details">
+                        <h3>Classic Latte <span class="price">$4.50</span></h3>
+                        <p>Rich espresso with steamed milk and a light layer of foam.</p>
+                        <button class="add-cart-btn"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="glass-card menu-card reveal">
+                    <img src="images/photo-02.jpeg" alt="Cappuccino" class="menu-img">
+                    <div class="menu-details">
+                        <h3>Cappuccino <span class="price">$5.00</span></h3>
+                        <p>Double shot espresso, steamed milk, and a deep foam cap.</p>
+                        <button class="add-cart-btn"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="glass-card menu-card reveal">
+                    <img src="images/photo-03.jpeg" alt="Espresso" class="menu-img">
+                    <div class="menu-details">
+                        <h3>Pure Espresso <span class="price">$3.50</span></h3>
+                        <p>Strong, concentrated coffee served in a demitasse.</p>
+                        <button class="add-cart-btn"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="glass-card menu-card reveal">
+                    <img src="images/photo-04.jpeg" alt="Iced Coffee" class="menu-img">
+                    <div class="menu-details">
+                        <h3>Cold Brew <span class="price">$5.50</span></h3>
+                        <p>Slow steeped for 12 hours for a smooth, bold flavor.</p>
+                        <button class="add-cart-btn"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="glass-card menu-card reveal">
+                    <img src="images/photo-05.jpeg" alt="Mocha" class="menu-img">
+                    <div class="menu-details">
+                        <h3>Signature Mocha <span class="price">$6.00</span></h3>
+                        <p>Espresso, chocolate, and steamed milk topped with whipped cream.</p>
+                        <button class="add-cart-btn"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="glass-card menu-card reveal">
+                    <img src="images/photo-06.jpeg" alt="Croissant" class="menu-img">
+                    <div class="menu-details">
+                        <h3>Butter Croissant <span class="price">$3.00</span></h3>
+                        <p>Flaky, golden pastry baked fresh every morning.</p>
+                        <button class="add-cart-btn"><i class="fas fa-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col reveal">
+                    <h4>Aroma Bliss</h4>
+                    <p>Elevating the coffee experience with passion, precision, and the finest ingredients from around the globe.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col reveal">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#features">Services</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col reveal">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to get the latest updates, offers, and brewing tips.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Aroma Bliss. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const closeBtn = document.getElementById('closeBtn');
+            const mobileSidebar = document.getElementById('mobileSidebar');
+            const overlay = document.getElementById('overlay');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function toggleMenu() {
+                mobileSidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+
+                document.body.style.overflow = mobileSidebar.classList.contains('active') ? 'hidden' : 'auto';
+            }
+
+            hamburgerBtn.addEventListener('click', toggleMenu);
+            closeBtn.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const revealCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            };
+
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            const cartButtons = document.querySelectorAll('.add-cart-btn');
+            
+            cartButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const originalText = this.innerHTML;
+
+                    this.innerHTML = '<i class="fas fa-check"></i> Added';
+                    this.style.backgroundColor = '#D4AF37';
+                    this.style.color = '#1A0F11';
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.style.backgroundColor = '';
+                        this.style.color = '';
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
